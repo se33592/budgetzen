@@ -136,7 +136,9 @@ inc:()=>{if(!(c>0))return bad();wr().inc.push({id:uid(),l:(v.l||'Revenu').trim()
 exp:()=>{if(!(c>0))return bad();const o={l:(v.l||'Dépense').trim().slice(0,60),c,k:CT()[v.k]?v.k:'autres'},t=ed&&wr().exp.find(x=>x.id===ed.id);if(t)Object.assign(t,o);else wr().exp.push({id:uid(),...o});ed=null;fin('Dépense enregistrée ✓')},
 goal:()=>{const t=cents(v.t);if(!(t>0)||!v.n.trim())return toast('Indiquez un nom et un montant visé valide.');S.goals.push({id:uid(),n:v.n.trim().slice(0,60),t,s:0});fin('Objectif créé ✓')},
 bud:()=>{if(!(c>0))return bad();if(!CT()[v.k])return;S.bud[v.k]=c;fin('Plafond enregistré ✓')},
-rec:()=>{if(!(c>0))return bad();S.rec.push({id:uid(),t:v.t==='inc'?'inc':'exp',l:(v.l||'Récurrent').trim().slice(0,60),c,k:CT()[v.k]?v.k:'autres',from:ym});fin('Opération récurrente ajoutée ✓')},
+rec:()=>{if(!(c>0))return bad();S.rec.push({id:uid(),t:v.t==='inc'?'inc':'exp',l:(v.l||'Récurrent').trim().slice(0,60),c,k:C
+T()[v.k]?v.k:'autres',from:ym});fin('Opération récurrente ajoutée ✓')},
+  
 cat:()=>{const n=(v.n||'').trim().slice(0,30);if(!n)return toast('Indiquez un nom de catégorie.');if(Object.values(CT()).some(x=>x[0].toLowerCase()===n.toLowerCase()))return toast('Cette catégorie existe déjà.');S.cats.push({id:uid(),n,col:PAL[S.cats.length%PAL.length]});fin('Catégorie créée ✓')},
 contact:()=>{if(v.website)return;const n=(v.n||'').trim(),em=(v.e||'').trim(),sj=(v.s||'').trim(),m=(v.m||'').trim();
 if(n.length<2||n.length>80)return toast('Indiquez votre nom (2 à 80 caractères).');if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)||em.length>120)return toast('Adresse e-mail invalide.');
